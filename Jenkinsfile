@@ -13,22 +13,22 @@ pipeline {
         }
         stage('Build Docker') {
             steps {
-               sh 'docker build -t ajeet9415/docker-jenkins-k8s-integration:01 .'
+               bat 'docker build -t pranavkumar589/docker-jenkins-k8s-integration:01 .'
               }
         }
         stage('Push image to dockerhub') {
             steps {
                 withCredentials([string(credentialsId: 'DOCKER_PASS', variable: 'DOCKER_PASS')]) {
-                    sh 'docker login -u ajeet9415k@gmail.com -p ${DOCKER_PASS}'
+                    bat 'docker login -u pranavkumar589@gmail.com -p ${DOCKER_PASS}'
                 }
-               sh 'docker push ajeet9415/docker-jenkins-k8s-integration:01'
+               bat 'docker push pranavkumar589/docker-jenkins-k8s-integration:01'
               }
         }
         
         stage('Deploy') {
             steps {
                 kubernetesDeploy (configs: 'deployment.yml', kubeconfigId: 'kubeconfig')
-                sh 'kubectl rollout restart deployment docker-jenkins-k8s-deployment'
+                bat 'kubectl rollout restart deployment docker-jenkins-k8s-deployment'
               }
         }
         
