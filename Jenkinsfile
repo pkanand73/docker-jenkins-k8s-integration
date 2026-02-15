@@ -8,7 +8,7 @@ pipeline {
         stage('Build Maven') {
             steps {
                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/pkanand73/docker-jenkins-k8s-integration.git']])
-               sh 'mvn clean install'
+               bat 'mvn clean install'
               }
         }
         stage('Build Docker') {
