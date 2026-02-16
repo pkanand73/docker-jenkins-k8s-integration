@@ -30,6 +30,7 @@ pipeline {
                 // kubernetesDeploy (configs: 'deployment.yml', kubeconfigId: 'kubeconfig')
                 // bat 'kubectl rollout restart deployment docker-jenkins-k8s-deployment'
                 bat "set KUBECONFIG=C:\\Users\\prana\\.kube\\config && kubectl config get-contexts"
+                bat  "kubectl get pods"
                   bat  "kubectl config get-contexts"
                    bat "kubectl apply -f deployment.yml"
                    bat "kubectl rollout restart deployment docker-jenkins-k8s-deployment"
