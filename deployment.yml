@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: docker-jenkins-k8s
-          image: ajeet9415/docker-jenkins-k8s-integration:01 # Image that will be used to containers in the cluster
+          image: pranavkumar589/docker-jenkins-k8s-integration:01 # Image that will be used to containers in the cluster
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080 # The port that the container is running on in the cluster
