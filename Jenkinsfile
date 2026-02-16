@@ -19,7 +19,7 @@ pipeline {
          stage('Push image to dockerhub') {
              steps {
                  withCredentials([string(credentialsId: 'DOCKER_PASS', variable: 'DOCKER_PASS')]) {
-                     bat 'docker login -u pranavkumar589@gmail.com -p int@imss123'
+                     bat 'docker login -u pranavkumar589@gmail.com -p ${DOCKER_PASS}'
                  }
                 bat 'docker push pranavkumar589/docker-jenkins-k8s-integration:01'
                }
