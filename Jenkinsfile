@@ -8,7 +8,7 @@ pipeline {
         stage('Build Maven') {
             steps {
                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/pkanand73/docker-jenkins-k8s-integration.git']])
-               bat 'mvn clean install'
+               // bat 'mvn clean install'
               }
         }
         // stage('Build Docker') {
@@ -27,13 +27,13 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                // kubernetesDeploy (configs: 'deployment.yml', kubeconfigId: 'kubeconfig')
-                // bat 'kubectl rollout restart deployment docker-jenkins-k8s-deployment'
-                bat "set KUBECONFIG=C:\\Users\\prana\\.kube\\config && kubectl config get-contexts"
-                bat  "kubectl get pods"
-                  bat  "kubectl config get-contexts"
-                   bat "kubectl apply -f deployment.yml"
-                   bat "kubectl rollout restart deployment docker-jenkins-k8s-deployment"
+                bat """
+        set KUBECONFIG=C:\\Users\\prana\\.kube\\config
+        kubectl config get-contexts
+        kubectl get pods
+        kubectl apply -f deployment.yml
+        kubectl rollout restart deployment docker-jenkins-k8s-deployment
+        """
                 
               }
         }
